@@ -4,8 +4,6 @@ Raffi Adyatma P.W.
 
 APLIKASI GUI JAVA UNTUK MELIHAT DAN MENGEDIT TABEL DATABASE
 
-Jalankan file Main.java di dalam src
-
 Cara pakai;
 ketikkan nama database dan tekan tombol 'connect', akan mengkoneksikan ke database yang dituju
 ketik nama dari tabel dan tekan pilih untuk melihat isi tabel dan set tabel

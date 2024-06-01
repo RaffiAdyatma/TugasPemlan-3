@@ -25,11 +25,26 @@ public class runQuery implements ActionListener{
             database.see(a);
         }
         if(a.replaceAll(" ", "").substring(0, 3).equalsIgnoreCase("add")){
-            database.quickAdd(a.substring(3, a.length()));
+            database.quickAdd(format(a.substring(3, a.length())));
         }
         else{
             database.query(a);
         }
+    }
+
+    private String format(String a){
+        String output = "";
+        a = a.replaceAll(" ", "");
+
+        int index;
+        do {
+            output+= "("+ a.substring(a.indexOf('(')+1, a.indexOf(')')).replaceAll(",", ", ") 
+                    +"), ";
+            index = a.indexOf(')');
+            a = a.substring(index+1, a.length());
+        } while (a.indexOf(')')!=a.lastIndexOf(')'));
+        return output+= "("+ a.substring(a.indexOf('(')+1, a.indexOf(')')).replaceAll(",", ", ") 
+                    +")";
     }
 
 

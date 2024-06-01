@@ -107,12 +107,6 @@ public class MySQL {
     }
 
     public void quickAdd(String a){
-
-        String value = "";
-        int check = 1,
-            num=0;
-        do {
-            value = a.substring(a.indexOf("("), a.indexOf(")")+1); 
         try {
             result = statement.executeQuery("SELECT * FROM " + tabel);
             java.sql.ResultSetMetaData rsmd = result.getMetaData();
@@ -124,28 +118,15 @@ public class MySQL {
             }
             key += rsmd.getColumnName(rsmd.getColumnCount()) + ")";
 
-            statement.executeUpdate("INSERT INTO "+tabel+" "+key+" VALUES "+value);
+            statement.executeUpdate("INSERT INTO "+tabel+" "+key+" VALUES "+a);
 
-            log.setText(log.getText()+"\ndata ke "+(num++)+" berhasil ditambahkan");
+            log.setText(log.getText()+"\ndata berhasil ditambahkan");
         }
         catch (SQLException e) {
-            log.setText(log.getText()+"\ndata ke "+(num++)+" Tidak Berhasil ditambahkan, periksa syntax");
+            log.setText(log.getText()+"\ndata ke Tidak Berhasil ditambahkan, periksa syntax");
             e.printStackTrace();
         }
-
-        // akan menghasilkan exception bahwa index out of bounds, karena value akan berusaha mengambil
-        // substring dari -1 ke 0??
-        // dibiarkan karena berusaha membetulkan == lebih rusak 
-        a = a.substring(a.indexOf(")")+1, a.length());
-        if(check==1){
-            check=2;
-        }
-        if(a.indexOf(")") == a.lastIndexOf(")")) {
-            check=1;
-        }
-        
-        } while (check!=2);
-        
+    
         
     }
 
